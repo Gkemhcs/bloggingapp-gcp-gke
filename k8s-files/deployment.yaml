@@ -1,0 +1,66 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name:  blogging
+   namespace: blogging
+   labels:
+      app: blog 
+spec:
+   replicas: 1
+   selector:
+      matchLabels:
+         pod: blog
+   template:
+      metadata:
+        labels:
+           pod: blog
+        annotations:
+         gke-gcsfuse/volumes: "true"
+      spec:
+         serviceAccountName: blogger
+         containers:
+         - name: blog
+           image: us-central1-docker.pkg.dev/PROJECT_ID/repo-blog/blogging
+           ports:
+           - containerPort: 8080
+           envFrom:
+           - configMapRef:
+               name: kms-info
+           - secretRef:
+              name: sql-cred
+           volumeMounts:
+           - name: gcs
+             mountPath: "/data" 
+         
+         volumes:
+          - name: gcs 
+            persistentVolumeClaim:
+              claimName: gcs-pvc
+     
+---        
+apiVersion: v1
+kind: Service
+metadata:
+  name: blogging-svc
+  namespace: blogging 
+spec:
+   type: ClusterIP
+   selector:
+     pod: blog 
+   ports:
+   - port : 8080
+     targetPort: 8080
+     name: http
+---
+apiVersion: networking.k8s.io/v1 
+kind: Ingress 
+metadata:
+   name: blogging-frontend 
+   namespace: blogging 
+spec:
+   defaultBackend:
+     service:
+      name: blogging-svc
+      port: 
+        name: http

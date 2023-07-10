@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+   name: blogging 
+---
+apiVersion: v1
+kind: ServiceAccount 
+metadata:
+   name: blogger 
+   namespace: blogging
+   annotations:
+       iam.gke.io/gcp-service-account: GOOGLE_CLOUD_SERVICE_ACCOUNT

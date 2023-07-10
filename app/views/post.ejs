@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VIVARAN</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <style>
+    /* Custom CSS for the blog post page */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+    }
+
+    .container {
+      margin-top: 50px;
+      max-width: 800px;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      animation: fade-in 1s ease-in-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-logo {
+      text-align: center;
+      margin-bottom: 20px;
+      animation: slide-in-top 1s ease-in-out;
+    }
+
+    .brand-logo img {
+      width: 150px;
+    }
+
+    h1, h2 {
+      color: #333333;
+      animation: fade-in 1s ease-in-out;
+    }
+
+    .author {
+      font-size: 14px;
+      color: #777777;
+      margin-bottom: 10px;
+      animation: fade-in 1s ease-in-out;
+    }
+
+    .content {
+      margin-top: 20px;
+      line-height: 1.6;
+      animation: slide-in-left 1s ease-in-out;
+    }
+
+    .btn-home {
+      margin-top: 20px;
+      animation: fade-in 1s ease-in-out;
+    }
+
+    /* CSS animations */
+    @keyframes fade-in {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slide-in-top {
+      0% {
+        transform: translateY(-100px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slide-in-left {
+      0% {
+        transform: translateX(-100px);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    /* Animation for left side */
+    .left-animation {
+      position: absolute;
+      top: 0;
+      left: -20px;
+      height: 100%;
+      width: 20px;
+      background-color: #2962ff;
+      animation: slide-in-left-side 2s infinite;
+    }
+
+    @keyframes slide-in-left-side {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    /* Animation for right side */
+    .right-animation {
+      position: absolute;
+      top: 0;
+      right: -20px;
+      height: 100%;
+      width: 20px;
+      background-color: #ff9f00;
+      animation: slide-in-right-side 2s infinite;
+    }
+
+    @keyframes slide-in-right-side {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="brand-logo">
+      <h1>"VIVARAN"</h1>
+    </div>
+    <h1><%= obj.title %></h1>
+    <p class="author">Written by <%= obj.author %> on <%= obj.dateString %></p>
+    <div class="content">
+      <p><%= content %></p>
+    </div>
+    <a href="/" class="btn btn-home">Back to Home</a>
+    <div class="left-animation"></div>
+    <div class="right-animation"></div>
+  </div>
+</body>
+</html>

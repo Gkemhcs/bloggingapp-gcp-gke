@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIVARAN</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Semantic UI CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f4f4f4;
+      position: relative;
+      animation: glow-bg 3s ease-in-out infinite alternate;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 40px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      min-height: calc(100vh - 120px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .form-group label {
+      font-weight: bold;
+    }
+
+    .submit-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #337ab7;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background-color: #286090;
+    }
+
+    .radio-group label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .radio-group input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    #content {
+      height: 300px;
+      resize: vertical;
+    }
+
+    .home-btn {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      background-color: #337ab7;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    .home-btn:hover {
+      background-color: #286090;
+    }
+
+    .cancel-btn {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #ccc;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    .cancel-btn:hover {
+      background-color: #999;
+    }
+
+    .glow-text {
+      animation: glow 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px #fff, 0 0 10px #00c4ff, 0 0 20px #00c4ff, 0 0 30px #00c4ff;
+      }
+      to {
+        text-shadow: 0 0 10px #fff, 0 0 20px #00c4ff, 0 0 30px #00c4ff, 0 0 40px #00c4ff;
+      }
+    }
+
+    @keyframes glow-bg {
+      from {
+        background-color: #f4f4f4;
+      }
+      to {
+        background-color: #00c4ff;
+      }
+    }
+.container {
+  /* Existing styles */
+  position: relative;
+}
+
+.spinner-left,
+.spinner-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top-color: #337ab7;
+  animation: spinner 1s linear infinite;
+}
+
+.spinner-left {
+  left: -40px;
+}
+
+.spinner-right {
+  right: -40px;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+ <div class="spinner-left"></div>
+  <div class="spinner-right"></div>
+    <h1 class="glow-text">Create Blog</h1>
+    <form id="blogForm" action="/save" method="POST">
+      <div class="form-group">
+        <label for="author">Author</label>
+        <input type="text" id="author"  name="author" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>Category</label>
+        <div class="radio-group">
+          <label>
+            <input type="radio" name="category" value="technology" required>
+            Technology
+          </label>
+          <label>
+            <input type="radio" name="category" value="food" required>
+            Food
+          </label>
+          <label>
+            <input type="radio" name="category" value="travel" required>
+            Travel
+          </label>
+          <label>
+            <input type="radio" name="category" value="fashion" required>
+            Fashion
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="content">Content</label>
+        <textarea id="content" class="form-control"  name="content" rows="50" required></textarea>
+      </div>
+      <button type="submit" class="ui primary button submit-btn glow-text">Create Blog</button>
+      <button type="button" class="cancel-btn glow-text" onclick="location.href='/'">Cancel</button>
+    </form>
+    <a href="/" class="btn btn-primary home-btn glow-text">Home</a>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Semantic UI JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+  <!-- Custom JS -->
+  <script>
+    // Handle form submission
+    document.getElementById('blogForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      // Perform form validation and submission logic here
+      // ...
+
+      // Display success message using Semantic UI
+      $('.submit-btn').addClass('loading');
+      setTimeout(function () {
+        $('.submit-btn').removeClass('loading');
+        alert('Blog created successfully!');
+        // Reset form fields
+        document.getElementById('blogForm').reset();
+      }, 1500);
+      e.target.submit()
+    });
+  </script>
+</body>
+</html>
